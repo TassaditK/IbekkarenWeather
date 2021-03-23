@@ -22,7 +22,7 @@ let server = http.createServer((req, res) => {
         res.end(result);
     }); 
 });
-server.listen(port,()=>{  // do not add localhost here if you are deploying it
+server.listen(port,()=>{  
     console.log("server listening to port "+port);
 });
 
