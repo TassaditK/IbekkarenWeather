@@ -1,0 +1,75 @@
+<html>
+    <head>
+     <title>Météo Ibekkaren</title> 
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+     <meta charset="utf-8">
+     <link rel="icon" href="data:,">
+     <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-seriff;
+            color: #fff;
+            background:  #414141;
+        }
+
+        .container {
+            width: 30%;
+        }
+        .card {
+            border-radius: 50px;
+            background: #343434;
+            box-shadow: 5px 5px 10px #191b1b, -5px -5px 10px #595959;
+            padding: 2%;
+            text-align: center;
+        }
+        img#icon {
+            width: 45%;
+            margin-left: 95px;
+        }
+        .card ul li{
+            list-style: none;
+        }
+        li{
+            text-decoration: solid;
+            margin-bottom: 2rem;
+            font-size: large;
+        }
+     </style>
+
+    </head>
+
+    <body>
+    <div class="container">
+        <div class="card">
+            <h1 >{{name}} </h1>
+            {{#weather}}
+            <img id="icon" src="http://openweathermap.org/img/w/{{icon}}.png" ></img>
+            {{/weather}}
+            <ul>
+                {{#main}}
+                <li id="temp" >Temperature :   {{temp}}°C</li>
+                <li> Ressenti :   {{feels_like}} °C</li>
+                {{/main}}
+                {{#weather}}
+                <li id="weather">Temp :   {{description}} </li>
+                {{/weather}}
+                {{#wind}}
+                <li id="wind">Vent :   {{speed}} Km/h</li>
+                {{/wind}}
+                {{#main}}
+                <li> Humidité :   {{humidity}} %</li>
+                {{/main}}
+                
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>       
+    </body>
+</html>
+
