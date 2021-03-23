@@ -5,6 +5,7 @@ let http = require('http')
 let fs =require("fs");
 let mustache = require('mustache');
 let request = require('request');
+const port = Process.env.PORT || 3000 ;
 let url2;
 let result;
 let city;
@@ -21,7 +22,9 @@ let server = http.createServer((req, res) => {
         res.end(result);
     }); 
 });
-server.listen(3000);
+server.listen(port,()=>{  // do not add localhost here if you are deploying it
+    console.log("server listening to port "+port);
+});
 
 
 
