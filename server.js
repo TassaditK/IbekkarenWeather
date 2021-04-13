@@ -5,7 +5,6 @@ let http = require('http')
 let fs =require("fs");
 let mustache = require('mustache');
 let request = require('request');
-const port = Process.env.PORT || 3000 ;
 let url2;
 let result;
 let city;
@@ -17,14 +16,17 @@ let server = http.createServer((req, res) => {
     city = url.query.city;
     url2 = 'https://api.openweathermap.org/data/2.5/weather?q=Ibekkaren&appid=620d84604500582ade540ab962c47c4a&units=metric&lang=fr';
     request(url2, (err, res2, body) => {
+        var date = new Date();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let currentTime = hours.toString()+":"+minutes.toString();
         let data = JSON.parse(body);
+        data.currentTime = currentTime;
         result = mustache.render(html_doc,data);
         res.end(result);
     }); 
 });
-server.listen(port,()=>{  
-    console.log("server listening to port "+port);
-});
+server.listen(4000);
 
 
 
