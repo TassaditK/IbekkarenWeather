@@ -3,73 +3,107 @@
      <title>Météo Ibekkaren</title> 
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
      <meta charset="utf-8">
      <link rel="icon" href="data:,">
      <style>
-        body{
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Poppins', sans-seriff;
+       @import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+        html, body {
+            height: 100%;
             color: #fff;
             background:  #414141;
         }
 
-        .container {
-            width: 30%;
+        * {
+            padding: 0px;
+            margin: 0px;
         }
+
+        body {
+            background-color:#4d4d4d;
+            display: grid;
+            place-items: center
+        }
+
         .card {
-            border-radius: 50px;
-            background: #343434;
             box-shadow: 5px 5px 10px #191b1b, -5px -5px 10px #595959;
-            padding: 2%;
-            text-align: center;
+            background-color: #343434;
+            border-radius: 50px;
+            color: #6f707d;
+            font-family: 'Marcellus', serif
         }
-        img#icon {
-            width: 45%;
-            margin-left: 95px;
+
+        #heading {
+            font-size: 55px;
+            color: #d4d5d9
         }
-        .card ul li{
-            list-style: none;
+        h4,h6{
+            font-size: 25px;
+            color: #bdbebf
         }
-        li{
-            text-decoration: solid;
-            margin-bottom: 2rem;
-            font-size: large;
+
+        .temp {
+            place-items: center
+        }
+      
+        .temp-details>p>span,
+        .grey {
+            color: #bdbebf;
+            font-size: 14x
+        }
+
+        .fa {
+            color: #d4d5d9 
+        }
+
+        *:focus {
+            outline: none
+        }
+        #description{
+            font-size: 19px;
         }
      </style>
 
     </head>
 
     <body>
-    <div class="container">
-        <div class="card">
-            <h1 >{{name}} </h1>
-            {{#weather}}
-            <img id="icon" src="http://openweathermap.org/img/w/{{icon}}.png" ></img>
-            {{/weather}}
-            <ul>
-                {{#main}}
-                <li id="temp" >Temperature :   {{temp}}°C</li>
-                <li> Ressenti :   {{feels_like}} °C</li>
-                {{/main}}
-                {{#weather}}
-                <li id="weather">Temp :   {{description}} </li>
-                {{/weather}}
-                {{#wind}}
-                <li id="wind">Vent :   {{speed}} Km/h</li>
-                {{/wind}}
-                {{#main}}
-                <li> Humidité :   {{humidity}} %</li>
-                {{/main}}
-                
-            </ul>
+    <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-4 col-sm-12 col-xs-12">
+            <div class="card p-4">
+                <div class="d-flex">
+                    <h4 class="flex-grow-1">{{name}}</h4>
+                    <h6>{{currentTime}}</h6>
+                </div>
+                <div class="d-flex flex-column temp mt-5 mb-3">
+                    {{#main}}
+                    <h1 class="mb-0 font-weight-bold" id="heading"> {{temp}} °C </h1>
+                      {{#weather}}
+                     <span class="small grey" id="description"  >{{description}}</span>
+                     {{/weather}}
+                     {{/main}}
+                </div>
+                <div><br></div>
+                <div class="d-flex">
+                    <div class="temp-details flex-grow-1">
+                        {{#wind}}
+                        <p class="my-1"> <i class='fas fa-wind' style='font-size:24px'></i><span>Vent:  {{speed}} km/h </span> </p>
+                        {{/wind}}
+                         {{#main}}
+                        <p class="my-1"><i class='fas fa-water' style='font-size:24px'></i><span> Humidité: {{humidity}} % </span> </p>
+                        {{/main}}
+                    </div>
+                    <div>
+                    {{#weather}}
+                        <img id="icon" src="http://openweathermap.org/img/w/{{icon}}.png" width="160px">
+                    {{/weather}}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>       
+    </div>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>       
     </body>
 </html>
 
